@@ -1,10 +1,12 @@
-package com.example.jogodavelha
+package com.example.jogodavelha.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import com.example.jogodavelha.R
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,6 +15,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun buttonClick(view: View) {
+        val pair = pair(view)
+        val btSelections = pair.first
+        val cellID = pair.second
+        gameplay(cellID, btSelections)
+    }
+
+    private fun pair(view: View): Pair<Button, Int> {
         val btSelections = view as Button
         var cellID = 0
         when (btSelections.id) {
@@ -26,13 +35,13 @@ class MainActivity : AppCompatActivity() {
             R.id.button8 -> cellID = 8
             R.id.button9 -> cellID = 9
         }
-        gameplay(cellID, btSelections)
+        return Pair(btSelections, cellID)
     }
 
     var player1 = ArrayList<Int>()
     var player2 = ArrayList<Int>()
     var playerActual = 1
-    fun gameplay(cellID: Int, btSelections: Button) {
+    private fun gameplay(cellID: Int, btSelections: Button) {
         if (playerActual == 1) {
             player1.add(cellID)
             btSelections.text = "X"
@@ -47,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun gameWinner() {
-        var gamelist = arrayListOf(
+        val gamelist = arrayListOf(
             listOf(1, 2, 3),
             listOf(4, 5, 6),
             listOf(7, 8, 9),
