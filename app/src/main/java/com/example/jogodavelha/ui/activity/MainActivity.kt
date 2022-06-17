@@ -6,9 +6,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import com.example.jogodavelha.R
+import com.example.jogodavelha.viewModel.Model
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity(private val model: Model) : AppCompatActivity() {
+    private var player1 = ArrayList<Int>()
+    private var player2 = ArrayList<Int>()
+    private var playerActual = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,9 +43,6 @@ class MainActivity : AppCompatActivity() {
         return Pair(btSelections, cellID)
     }
 
-    var player1 = ArrayList<Int>()
-    var player2 = ArrayList<Int>()
-    var playerActual = 1
     private fun gameplay(cellID: Int, btSelections: Button) {
         if (playerActual == 1) {
             player1.add(cellID)
@@ -51,27 +53,8 @@ class MainActivity : AppCompatActivity() {
             btSelections.text = "O"
             playerActual = 1
         }
-        gameWinner()
+        model.gameWinner(player1,player2, this)
         btSelections.isEnabled = false
     }
 
-    fun gameWinner() {
-        val gamelist = arrayListOf(
-            listOf(1, 2, 3),
-            listOf(4, 5, 6),
-            listOf(7, 8, 9),
-            listOf(1, 4, 7),
-            listOf(2, 5, 8),
-            listOf(3, 6, 9),
-            listOf(1, 5, 9),
-            listOf(3, 5, 7)
-        )
-        for (listOf in gamelist) {
-            if (player1.containsAll(listOf)) {
-                Toast.makeText(this, "Player1 is winner", Toast.LENGTH_LONG).show()
-            } else if (player2.containsAll(listOf)) {
-                Toast.makeText(this, "Player2 is winner", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
 }
