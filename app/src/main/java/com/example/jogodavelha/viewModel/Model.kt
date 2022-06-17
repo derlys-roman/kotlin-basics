@@ -1,5 +1,6 @@
 package com.example.jogodavelha.viewModel
 
-class Model(private val model: Model) {
+import com.example.jogodavelha.model.Data
 
+class Model(private val data: Data) {
 }
