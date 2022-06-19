@@ -1,15 +1,14 @@
 package com.example.jogodavelha.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.jogodavelha.R
 import com.example.jogodavelha.viewModel.Model
-import java.util.*
 
-class MainActivity(private val model: Model) : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
+    private val model = Model()
     private var player1 = ArrayList<Int>()
     private var player2 = ArrayList<Int>()
     private var playerActual = 1
