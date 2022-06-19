@@ -10,7 +10,11 @@ import com.example.jogodavelha.model.Data
 class Model() {
     private var classdata = Data()
     private val data = classdata.getAll()
-    fun gameWinner(player1:ArrayList<Int>, player2 : ArrayList<Int>, context: Context) {
+    private var playerActual = 1
+    private var player1 = ArrayList<Int>()
+    private var player2 = ArrayList<Int>()
+
+    fun gameWinner(context: Context) {
 
         for (listOf in data) {
             if (player1.containsAll(listOf)) {
@@ -38,5 +42,15 @@ class Model() {
         return Pair(btSelections, cellID)
     }
 
-
+    fun gameplay(cellID: Int, btSelections: Button) {
+        if (playerActual == 1) {
+            playerActual = 2
+            player1.add(cellID)
+            btSelections.text = "X"
+        } else {
+            player2.add(cellID)
+            btSelections.text = "O"
+            playerActual = 1
+        }
+    }
 }
