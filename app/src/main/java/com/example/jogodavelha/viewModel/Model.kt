@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.example.jogodavelha.R
 import com.example.jogodavelha.model.Data
 
-class Model() {
+class Model {
     private var classdata = Data()
     private val data = classdata.getAll()
     private var playerActual = 1
