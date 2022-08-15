@@ -19,8 +19,10 @@ class Model {
         for (listOf in data) {
             if (player1.containsAll(listOf)) {
                 Toast.makeText(context, "Player1 is winner", Toast.LENGTH_LONG).show()
+                return
             } else if (player2.containsAll(listOf)) {
                 Toast.makeText(context, "Player2 is winner", Toast.LENGTH_LONG).show()
+                return
             }
         }
     }
